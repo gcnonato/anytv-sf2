@@ -450,6 +450,12 @@ signup_answers:
         _locale:  %anytv.locales%
         page:  \d+
         
+mails:
+    path:      /{_locale}/admin/mails
+    defaults:  { _controller: AnytvDashboardBundle:Mail:index, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
 faqs:
     path:      /{_locale}/admin/faq/{page}
     defaults:  { _controller: AnytvDashboardBundle:Faq:index, _locale: en, page: 1 }

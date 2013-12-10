@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Anytv\DashboardBundle\AnytvDashboardBundle(),
             new Anytv\MainBundle\AnytvMainBundle(),
             new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
+            new Hype\MailchimpBundle\HypeMailchimpBundle(),
             //new Eko\GoogleTranslateBundle\EkoGoogleTranslateBundle()
         );
 

@@ -83,11 +83,14 @@ class YoutubeVideoController extends Controller
       $max_clicks = 0;
       foreach($graph_referrals as $graph_referral)
       {
-        $aryRange[$graph_referral->getDateAsString()] += $graph_referral->getClicks(); 
-        
-        if($aryRange[$graph_referral->getDateAsString()] > $max_clicks)
+        if(isset($aryRange[$graph_referral->getDateAsString()]))
         {
-          $max_clicks = $aryRange[$graph_referral->getDateAsString()];        
+          $aryRange[$graph_referral->getDateAsString()] += $graph_referral->getClicks(); 
+        
+          if($aryRange[$graph_referral->getDateAsString()] > $max_clicks)
+          {
+            $max_clicks = $aryRange[$graph_referral->getDateAsString()];        
+          }   
         }
       }
       

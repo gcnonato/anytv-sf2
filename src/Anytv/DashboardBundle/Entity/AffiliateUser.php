@@ -413,6 +413,13 @@ class AffiliateUser implements UserInterface, \Serializable
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="mailchimp_subscribed", type="boolean")
+     */
+    private $mailchimpSubscribed;
 
     public function __construct()
     {
@@ -428,6 +435,7 @@ class AffiliateUser implements UserInterface, \Serializable
         $this->isPublic = true;
         $this->wantsAlerts = true;
         $this->useTwitchOrLiveStream = false;
+        $this->mailchimpSubscribed = false;
     }
 
     /**
@@ -1358,5 +1366,28 @@ class AffiliateUser implements UserInterface, \Serializable
     public function getIsEditor()
     {
         return $this->isEditor;
+    }
+
+    /**
+     * Set mailchimpSubscribed
+     *
+     * @param boolean $mailchimpSubscribed
+     * @return AffiliateUser
+     */
+    public function setMailchimpSubscribed($mailchimpSubscribed)
+    {
+        $this->mailchimpSubscribed = $mailchimpSubscribed;
+    
+        return $this;
+    }
+
+    /**
+     * Get mailchimpSubscribed
+     *
+     * @return boolean 
+     */
+    public function getMailchimpSubscribed()
+    {
+        return $this->mailchimpSubscribed;
     }
 }

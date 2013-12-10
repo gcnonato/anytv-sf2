@@ -1051,7 +1051,20 @@ class ProfileController extends Controller
       
       $affiliate = $affiliate_user->getAffiliate();
       
-      return $this->render('AnytvDashboardBundle:Profile:myVideos.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'page'=>$page));
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:YoutubeVideo');
+      
+      $items_per_page = 10;
+      $order_by = 'clicks';
+      $order_by_2 = 'conversions';
+      $order = 'DESC';
+        
+      $youtube_videos = $repository->findAllYoutubeVideosFiltered($page, $items_per_page, $order_by, $order_by_2, $order, $affiliate);
+      $total_youtube_videos = $repository->countAllYoutubeVideosFiltered($affiliate);
+      $total_pages = ceil($total_youtube_videos / $items_per_page);
+      
+      $offset = ($items_per_page * ($page-1));
+      
+      return $this->render('AnytvDashboardBundle:Profile:myVideos.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'page'=>$page, 'youtube_videos'=>$youtube_videos, 'offset'=>$offset, 'total_pages'=>$total_pages));
     }
     
     public function companyAction(Request $request, $mode, $form)
@@ -1365,8 +1378,6 @@ class ProfileController extends Controller
     public function topVideosAction(Request $request, $page)
     {
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:YoutubeVideo');
-      $translator = $this->get('translator');
-      $session = $this->get('session');
       $affiliate_user = $this->getUser();
 
       if (!$affiliate_user) {

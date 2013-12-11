@@ -27,7 +27,7 @@ function showOffer(url){
     $.get(url)
     .done(function( data ) { $('#profile_offer_content').html(data); $('.modal-content').removeClass('preloader');; });
 }
-
+/*
 $(document).ready(function(){
       $("a#cpy-ref-btn").zclip({
         path:'/bundles/anytvmain/js/zclip/ZeroClipboard.swf',
@@ -45,7 +45,7 @@ $(document).ready(function(){
         }
       });
     });
-    
+  */  
     
    
 

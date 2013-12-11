@@ -33,13 +33,14 @@ class UpdateMailchimpSubscribeCommand extends ContainerAwareCommand
         $updated_affiliates = 0;
         foreach($affiliate_users as $affiliate_user)
         {   
-          $result = $hype_mailchimp->getList()->subscribe($affiliate_user->getEmail());
+          $result = $hype_mailchimp->getList()->subscribe(trim($affiliate_user->getEmail()), 'html', false, false, false);
           
           if($result)
           {
-            $affiliate_user->setMailchimpSubscribed(true);
             $updated_affiliates++;   
           }
+          
+          $affiliate_user->setMailchimpSubscribed(true);
         }
         
         $manager->flush();

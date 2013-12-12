@@ -7,6 +7,7 @@
         <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
       {% else %}
         <img src="{{ asset('bundles/anytvdashboard/images/default-user-photo.png') }}">
+        <p><a class="pic-up-btn" href="{{ path('profile_view', { 'tab': 'company', 'mode': 'edit' }) }}">{% trans %}Upload{% endtrans %}</a></p>
       {% endif %}
     </div>
     <div class="panel-body">

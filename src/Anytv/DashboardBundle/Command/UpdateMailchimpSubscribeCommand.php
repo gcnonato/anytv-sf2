@@ -28,16 +28,24 @@ class UpdateMailchimpSubscribeCommand extends ContainerAwareCommand
         $manager = $doctrine->getManager();
         $hype_mailchimp = $container->get('hype_mailchimp');
           
-        $affiliate_users = $repository->findBy(array('mailchimpSubscribed'=>false), null, 5);
+        $affiliate_users = $repository->findBy(array('mailchimpSubscribed'=>false), null, 50);
         
         $updated_affiliates = 0;
         foreach($affiliate_users as $affiliate_user)
         {   
-          $result = $hype_mailchimp->getList()->subscribe(trim($affiliate_user->getEmail()), 'html', false, false, false);
-          
-          if($result)
+          try 
           {
-            $updated_affiliates++;   
+            $result = $hype_mailchimp->getList()->subscribe(trim($affiliate_user->getEmail()), 'html', false, true, false);
+          
+            if($result)
+            {
+              $output->writeln(implode(" ", $result));
+              $updated_affiliates++;   
+            }
+          } 
+          catch (\MailchimpAPIException $e) 
+          {
+            $output->writeln('Caught exception: '.$e->getMessage());
           }
           
           $affiliate_user->setMailchimpSubscribed(true);

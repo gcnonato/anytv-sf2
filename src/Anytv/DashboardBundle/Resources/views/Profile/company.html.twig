@@ -116,6 +116,8 @@
           <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_detail') }}" alt="{{ affiliate }}" />
         {% else %}
           <img src="{{ asset('bundles/anytvdashboard/images/profile-default-lg.svg') }}">
+          <div class="cl-20"></div>
+          <a href="{{ path('profile_view', { 'tab': 'company', 'mode': 'edit' }) }}">{% trans %}Upload{% endtrans %}</a>
         {% endif %}
       </div>
     </div>

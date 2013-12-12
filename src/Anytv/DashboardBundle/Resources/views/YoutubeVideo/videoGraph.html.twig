@@ -4,10 +4,10 @@
   data.addColumn('string','{%trans%}Time{%endtrans%}');
   data.addColumn('number','{% trans %}Clicks{% endtrans %}');
 </script>
-{% for clicks in aryRange %}
+{% for date, clicks in aryRange %}
   <script type="text/javascript">
     data.addRows([
-      ['', {{ clicks }}]
+      ['{{ date }}', {{ clicks }}]
     ]);
   </script>
 {% endfor %}

@@ -4,10 +4,10 @@
   data.addColumn('string','{%trans%}Time{%endtrans%}');
   data.addColumn('number','{% trans %}Referrals{% endtrans %}');
 </script>
-{% for referrals in aryRange %}
+{% for date, referrals in aryRange %}
   <script type="text/javascript">
     data.addRows([
-      ['', {{ referrals }}]
+      ['{{ date }}', {{ referrals }}]
     ]);
   </script>
 {% endfor %}

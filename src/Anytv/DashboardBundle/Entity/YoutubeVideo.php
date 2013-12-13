@@ -445,7 +445,7 @@ class YoutubeVideo
      */
     public function getLastStatDateAsString()
     {
-        return date_format($this->lastStatDate, 'Y-m-d');
+        return date_format(($this->lastStatDate ? $this->lastStatDate : $this->firstStatDate), 'Y-m-d');
     }
 
     /**
@@ -470,4 +470,16 @@ class YoutubeVideo
     {
         return $this->firstStatDate;
     }
+    
+    //$video_id = substr($video->getUrl(), strpos($video->getUrl(), 'youtube.com/watch?v=')+20, 11);
+    /**
+     * Get video id
+     *
+     * @return string
+     */
+    public function getVideoId()
+    {
+        return substr($this->getUrl(), strpos($this->getUrl(), 'youtube.com/watch?v=')+20, 11);
+    }
+    
 }

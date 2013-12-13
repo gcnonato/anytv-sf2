@@ -22,7 +22,7 @@
       {% for youtube_video in youtube_videos %}
         <tr>
           <td><a href="{{ path('offer_view', { 'id' : youtube_video.offer.id }) }}" title="{{ youtube_video.offer }}">{{ youtube_video.offer }}</a></td>
-          <td><a href="{{ youtube_video.url }}" target="_blank" title="{{ youtube_video.url }}"><img src="{{ asset('bundles/anytvdashboard/images/youtubeicon.png') }}"></a></td>
+          <td><a href="{{ youtube_video.url }}" target="_blank" title="{{ youtube_video.url }}"><img src="http://img.youtube.com/vi/{{ youtube_video.getVideoId() }}/3.jpg"></a></td>
           <td>{{ youtube_video.clicks }}</td>
           <td>{{ youtube_video.conversions }}</td>
           <td>{{ youtube_video.getLastStatDateAsString() }}</td>

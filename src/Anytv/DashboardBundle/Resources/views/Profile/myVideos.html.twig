@@ -44,7 +44,7 @@
             <td>{{ (key+1+offset) }}</td>
             <td>{{ youtube_video.offer }}</td>
             <td>{{ youtube_video.clicks }}</td>
-            <td><a data-toggle="modal" href="#myModal" onclick="showOffer('{{ path('profile_video_view', {'id':youtube_video.id}) }}');"><img src="{{ asset('bundles/anytvdashboard/images/youtubeicon.png') }}"></a></td>
+            <td><a data-toggle="modal" href="#myModal" onclick="showOffer('{{ path('profile_video_view', {'id':youtube_video.id}) }}');"><img src="http://img.youtube.com/vi/{{ youtube_video.getVideoId() }}/3.jpg"></a></td>
 	  </tr>
           {% endfor %}
           {% if (total_pages > 1) %}
